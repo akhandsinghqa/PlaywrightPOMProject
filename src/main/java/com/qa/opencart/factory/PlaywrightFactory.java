@@ -4,10 +4,12 @@ import com.microsoft.playwright.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Properties;
 
 public class PlaywrightFactory {
-//    Playwright playwright;
+    //    Playwright playwright;
 //    Browser browser;
 //    BrowserContext browserContext;
 //    Page page;
@@ -82,5 +84,14 @@ public class PlaywrightFactory {
             throw new RuntimeException(e);
         }
         return prop;
+    }
+
+    /* To take screenshots */
+    public static String takeScreenshot() {
+        String path = System.getProperty("user.dir") + "/screenshot/" + System.currentTimeMillis() + ".png";
+        byte[] buffer = getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
+        String base64Path = Base64.getEncoder().encodeToString(buffer);
+
+        return base64Path;
     }
 }
