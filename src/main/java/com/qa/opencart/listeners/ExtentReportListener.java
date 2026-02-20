@@ -18,7 +18,7 @@ import java.util.Date;
 import static com.qa.opencart.factory.PlaywrightFactory.takeScreenshot;
 
 public class ExtentReportListener implements ITestListener {
-    private static final String OUTPUT_FOLDER = "./build/";
+    private static final String OUTPUT_FOLDER = "build/";
     private static final String FILE_NAME = "TestExecutionReport.html";
 
     private static final ExtentReports extent = init();
