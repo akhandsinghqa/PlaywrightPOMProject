@@ -23,6 +23,7 @@ public class ExtentReportListener implements ITestListener {
 
     private static final ExtentReports extent = init();
     public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    private static ExtentReports extentReports;
 
 
     private static ExtentReports init() {
@@ -38,7 +39,7 @@ public class ExtentReportListener implements ITestListener {
             }
         }
 
-        ExtentReports extentReports = new ExtentReports();
+        extentReports = new ExtentReports();
         ExtentSparkReporter reporter = new ExtentSparkReporter(OUTPUT_FOLDER + FILE_NAME);
         reporter.config().setReportName("Open Cart Automation Test Results");
         extentReports.attachReporter(reporter);
