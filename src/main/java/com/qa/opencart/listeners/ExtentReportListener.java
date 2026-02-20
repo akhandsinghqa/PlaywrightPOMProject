@@ -22,8 +22,7 @@ public class ExtentReportListener implements ITestListener {
     private static final String FILE_NAME = "TestExecutionReport.html";
 
     private static final ExtentReports extent = init();
-    public static ThreadLocal<ExtentTest> test = new ThreadLocal<ExtentTest>();
-    private static ExtentReports extentReports;
+    public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
 
     private static ExtentReports init() {
@@ -39,17 +38,15 @@ public class ExtentReportListener implements ITestListener {
             }
         }
 
-        extentReports = new ExtentReports();
+        ExtentReports extentReports = new ExtentReports();
         ExtentSparkReporter reporter = new ExtentSparkReporter(OUTPUT_FOLDER + FILE_NAME);
         reporter.config().setReportName("Open Cart Automation Test Results");
         extentReports.attachReporter(reporter);
-        extentReports.setSystemInfo("System", "MAC");
-        extentReports.setSystemInfo("Author", "Naveen AutomationLabs");
+        extentReports.setSystemInfo("System", "Linux");
+        extentReports.setSystemInfo("Author", "Akhand Playwright Practice");
         extentReports.setSystemInfo("Build#", "1.1");
-        extentReports.setSystemInfo("Team", "OMS");
-        extentReports.setSystemInfo("Customer Name", "NAL");
-
-        //extentReports.setSystemInfo("ENV NAME", System.getProperty("env"));
+        extentReports.setSystemInfo("Team", "NONE");
+        extentReports.setSystemInfo("Customer Name", "APS");
 
         return extentReports;
     }
@@ -80,10 +77,6 @@ public class ExtentReportListener implements ITestListener {
                 result.getMethod().getDescription());
 
         extentTest.assignCategory(result.getTestContext().getSuite().getName());
-        /*
-         * methodName = StringUtils.capitalize(StringUtils.join(StringUtils.
-         * splitByCharacterTypeCamelCase(methodName), StringUtils.SPACE));
-         */
         extentTest.assignCategory(className);
         test.set(extentTest);
         test.get().getModel().setStartTime(getTime(result.getStartMillis()));

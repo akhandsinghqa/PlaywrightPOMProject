@@ -21,4 +21,18 @@
             <class name="com.qa.opencart.tests.LoginPageTest"/>
         </classes>
     </test>
+
+    <test name="Open Cart Home Page Test_firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.qa.opencart.tests.HomePageTest"/>
+        </classes>
+    </test>
+
+    <test name="Open Cart Login Page Test_firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.qa.opencart.tests.LoginPageTest"/>
+        </classes>
+    </test>
 </suite>

@@ -39,6 +39,7 @@ public class PlaywrightFactory {
 
     public Page initBrowser(Properties prop) {
         String browserName = prop.getProperty("browser").trim();
+        boolean headless = Boolean.parseBoolean(prop.getProperty("headless").trim());
         System.out.println("Browser Name : " + browserName);
 //        playwright = Playwright.create();
         tlPlaywright.set(Playwright.create());
@@ -46,19 +47,19 @@ public class PlaywrightFactory {
         switch (browserName.toLowerCase()) {
             case "chromium":
 //                browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-                tlBrowser.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+                tlBrowser.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless)));
                 break;
             case "firefox":
 //                browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false));
-                tlBrowser.set(getPlaywright().firefox().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+                tlBrowser.set(getPlaywright().firefox().launch(new BrowserType.LaunchOptions().setHeadless(headless)));
                 break;
             case "safari":
 //                browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false));
-                tlBrowser.set(getPlaywright().webkit().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+                tlBrowser.set(getPlaywright().webkit().launch(new BrowserType.LaunchOptions().setHeadless(headless)));
                 break;
             case "chrome":
 //                browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false));
-                tlBrowser.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false)));
+                tlBrowser.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(headless)));
                 break;
             default:
                 System.out.println("please pass the correct browser name...........");
@@ -77,7 +78,7 @@ public class PlaywrightFactory {
     /* This method is used to initialize the properties file from config  */
     public Properties initProp() {
         try {
-            FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
+            FileInputStream ip = new FileInputStream("src/test/resources/config/config.properties");
             prop = new Properties();
             prop.load(ip);
         } catch (IOException e) {
